@@ -1,0 +1,171 @@
+import React, { useState } from 'react';
+import { Mail, Phone, Menu, X, ArrowRight, ShieldCheck, Globe, Settings, Zap } from 'lucide-react';
+
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(null);
+
+  const projects = [
+    { id: "henderson", title: "HK Henderson AP House", company: "Audemars Piguet", thumbnail: "https://hypebeast.com/image/2025/03/06/audemars-piguet-ap-house-the-henderson-hong-kong-info-000.jpg", images: ["https://hypebeast.com/image/2025/03/06/audemars-piguet-ap-house-the-henderson-hong-kong-info-000.jpg", "https://hypebeast.com/image/2025/03/06/audemars-piguet-ap-house-the-henderson-hong-kong-info-002.jpg"] },
+    { id: "macau-ap", title: "Macau AP House", company: "Audemars Piguet", thumbnail: "087A5307.jpg", images: ["087A5307.jpg"] },
+    { id: "k11-ap", title: "K11 Musea AP House", company: "Audemars Piguet", thumbnail: "https://hypebeast.com/image/2025/03/06/audemars-piguet-ap-house-the-henderson-hong-kong-info-008.jpg", images: ["https://hypebeast.com/image/2025/03/06/audemars-piguet-ap-house-the-henderson-hong-kong-info-008.jpg"] },
+    { id: "seoul-ap", title: "Seoul AP House", company: "Audemars Piguet", thumbnail: "3840x2160-5.jpg", images: ["3840x2160-5.jpg"] },
+    { id: "graff-wuhan", title: "Graff Wuhan SKP", company: "Graff Diamonds", thumbnail: "240813%20GRAFF%20Wuhan%20SKP-141-HDR.jpg", images: ["240813%20GRAFF%20Wuhan%20SKP-141-HDR.jpg"] },
+    { id: "graff-dubai", title: "Graff Dubai Mall", company: "Graff Diamonds", thumbnail: "1_dubai.jpg", images: ["1_dubai.jpg"] },
+    { id: "cartier-canton", title: "Cartier Canton Road", company: "Cartier", thumbnail: "Peking Road - Facade External night view -1.jpg", images: ["Peking Road - Facade External night view -1.jpg"] }
+  ];
+
+  const experiences = [
+    {
+      company: "Graff Diamonds",
+      role: "Store Planning Construction & Project Manager",
+      period: "Apr 2024 - Oct 2025",
+      highlights: [
+        "HQ representative for global boutique developments, aligning brand vision and technical feasibility.",
+        "Led delivery of complex flagship projects across Japan, Middle East, and Oceania including Wuhan SKP.",
+        "Established global Installation Guidelines and Shipping/Packing Standards."
+      ]
+    },
+    {
+      company: "Audemars Piguet",
+      role: "Regional Store Planning Project Manager",
+      period: "Jan 2022 - Apr 2024",
+      highlights: [
+        "Managed delivery of HK Henderson AP House (1,200 sqm flagship) and Seoul AP House renovation.",
+        "Oversaw regional CAPEX and collaborated with Global HQ on design localization.",
+        "Spearheaded stakeholder alignment for flawless execution."
+      ]
+    },
+    {
+      company: "Cartier North Asia",
+      role: "Store Planning and Project Manager",
+      period: "Jun 2015 - Dec 2021",
+      highlights: [
+        "Project lead for North Asia flagship portfolio, including Canton Road and K11 Musea.",
+        "Managed multi-market travel retail and boutique renovations across APAC.",
+        "Negotiated technical agreements with landlords and consultants."
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FAF9F6] text-stone-800 font-sans selection:bg-stone-300">
+      <nav className="fixed w-full bg-[#FAF9F6]/90 backdrop-blur-md z-50 border-b border-stone-200 px-6 py-4 flex justify-between items-center">
+        <h1 className="text-xl font-light tracking-[0.3em] uppercase text-stone-900">Natasha Gan</h1>
+        <div className="hidden md:flex space-x-8 text-[10px] uppercase tracking-widest text-stone-500 font-medium">
+          {['About', 'Portfolio', 'Experience', 'Contact'].map(item => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-stone-900 transition-colors">{item}</a>
+          ))}
+        </div>
+      </nav>
+
+      {/* About / Hero */}
+      <section id="about" className="min-h-screen flex items-center pt-24 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center gap-16 w-full">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 shrink-0">
+             <div className="absolute inset-0 rounded-full border-[8px] border-white shadow-2xl overflow-hidden bg-stone-100">
+                <img src="Screenshot 2026-03-20 at 3.43.43 PM.jpg" className="w-full h-full object-cover grayscale" alt="Natasha Profile" />
+             </div>
+          </div>
+          <div className="flex-1 space-y-8 text-center md:text-left">
+            <div>
+              <h2 className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase mb-4">About</h2>
+              <h1 className="text-4xl md:text-6xl font-light leading-tight text-stone-900">
+                Crafting <span className="italic text-stone-500">Luxury</span> <br/>Retail Realities.
+              </h1>
+            </div>
+            <p className="text-lg text-stone-600 leading-relaxed max-w-2xl font-light">
+              Accomplished professional with over 15 years of experience delivering luxury flagship boutiques for Audemars Piguet, Graff, and Cartier.
+            </p>
+            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto md:mx-0">
+               {[
+                 { icon: ShieldCheck, label: "CAPEX Governance" },
+                 { icon: Globe, label: "Global Delivery" },
+                 { icon: Settings, label: "Lifecycle" },
+                 { icon: Zap, label: "Leadership" }
+               ].map((skill, i) => (
+                 <div key={i} className="flex items-center gap-2 text-[10px] tracking-widest uppercase text-stone-600 font-medium">
+                   <skill.icon size={14} className="text-stone-300"/> {skill.label}
+                 </div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio */}
+      <section id="portfolio" className="py-32 bg-stone-900 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-stone-100 text-4xl font-light italic mb-20">Signature Projects</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((p) => (
+              <div key={p.id} className="group relative aspect-[4/3] bg-stone-800 rounded-sm overflow-hidden cursor-pointer" onClick={() => setActiveProject(p)}>
+                <img src={p.thumbnail} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-700" alt={p.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
+                  <span className="text-stone-400 text-[10px] font-bold tracking-widest uppercase mb-2">{p.company}</span>
+                  <h4 className="text-white text-xl font-light flex items-center justify-between">{p.title} <ArrowRight size={16} /></h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="py-32 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <h3 className="text-4xl font-light text-stone-900 italic text-center mb-24">Professional Journey</h3>
+          <div className="space-y-32">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="relative grid md:grid-cols-[1.2fr_2.5fr] gap-8 md:gap-16">
+                <div className="md:text-right">
+                  <span className="text-[11px] font-mono text-stone-300 uppercase tracking-widest block mb-3">{exp.period}</span>
+                  <h3 className="text-2xl font-light text-stone-900 leading-tight">{exp.company}</h3>
+                </div>
+                <div className="border-l border-stone-100 pl-8 md:pl-16 space-y-4">
+                  <h4 className="text-stone-900 text-lg font-bold uppercase">{exp.role}</h4>
+                  <ul className="space-y-4 text-stone-600 font-light text-lg">
+                    {exp.highlights.map((h, i) => <li key={i}>• {h}</li>)}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="bg-stone-900 py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-3xl md:text-5xl font-light text-white italic text-center mb-16">Project Inquiry</h3>
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20" onSubmit={(e) => e.preventDefault()}>
+            <input type="text" className="w-full bg-stone-800/50 border border-stone-700 p-4 text-white focus:outline-none" placeholder="Name" />
+            <input type="email" className="w-full bg-stone-800/50 border border-stone-700 p-4 text-white focus:outline-none" placeholder="Email" />
+            <textarea rows={5} className="md:col-span-2 w-full bg-stone-800/50 border border-stone-700 p-4 text-white focus:outline-none" placeholder="Message"></textarea>
+            <button className="md:col-span-2 w-full py-5 bg-white text-stone-950 text-xs font-bold uppercase tracking-[0.3em] hover:bg-stone-200">Submit Inquiry</button>
+          </form>
+          <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-8">
+            <div className="flex gap-10 text-stone-400 text-xs tracking-widest uppercase font-medium">
+              <a href="mailto:natashamomomo@gmail.com" className="hover:text-white flex items-center gap-2"><Mail size={14}/> natashamomomo@gmail.com</a>
+              <a href="tel:+85267779795" className="hover:text-white flex items-center gap-2 text-white"><Phone size={14}/> +852 6777 9795</a>
+            </div>
+            <div className="text-[10px] text-stone-600 uppercase tracking-[0.3em]">© 2026 Natasha Gan</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modal */}
+      {activeProject && (
+        <div className="fixed inset-0 z-[100] bg-stone-950 flex flex-col overflow-y-auto">
+          <div className="sticky top-0 w-full bg-stone-950/90 backdrop-blur-xl px-6 py-8 flex justify-between items-center border-b border-white/5">
+             <h3 className="text-white text-2xl font-light italic">{activeProject.title}</h3>
+             <button onClick={() => setActiveProject(null)} className="p-4 text-white"><X size={24} /></button>
+          </div>
+          <div className="p-6 md:p-20 max-w-6xl mx-auto space-y-12">
+            {activeProject.images.map((src, i) => <img key={i} src={src} className="w-full object-cover rounded shadow-2xl" alt="View" />)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
